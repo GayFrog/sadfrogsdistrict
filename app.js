@@ -3,7 +3,7 @@ const _ = require('lodash');
 const moment = require('moment');
 const { ethers } = require('ethers');
 const tweet = require('./tweet');
-
+//handles how to format the tweets and characters and precision 
 function formatAndSendTweet(event) {
     const tokenName = _.get(event, ['asset', 'name']);
     const image = _.get(event, ['asset', 'image_url']);
@@ -19,10 +19,14 @@ function formatAndSendTweet(event) {
             ? 'Ξ' 
             : ` ${tokenSymbol}`
     );
-
-    const tweetText = `${tokenName} bought for ${formattedTokenPrice}${formattedPriceSymbol} ($${formattedUsdPrice}) #NFTs ${openseaLink}`;
-
-    console.log(tweetText);
+    
+  
+    //modify tweettext to inside if statement if greater than 1 eth, if it doesn't work then we need to modify the type
+    if ( formattedTokenPrice > 1){
+        const tweetText = `${tokenName} bought for ${formattedTokenPrice}${formattedPriceSymbol} ($${formattedUsdPrice}) #NFTs ${openseaLink}`;
+    console.log(tweetText);}
+    else { console.log("no sale over 1 eth");
+         return tweet.handleDupesAndTweet(tokename, "-1", image} // prints to your console that there was no sale for you but it should not tweet returns -1 so when you check tweettext in tweet you wont tweet
 
     return tweet.handleDupesAndTweet(tokenName, tweetText, image);
 }

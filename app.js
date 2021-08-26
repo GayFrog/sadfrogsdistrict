@@ -25,7 +25,8 @@ function formatAndSendTweet(event) {
     if ( formattedTokenPrice > 1){
         const tweetText = `${tokenName} bought for ${formattedTokenPrice}${formattedPriceSymbol} ($${formattedUsdPrice}) #NFTs ${openseaLink}`;
     console.log(tweetText);}
-    else { console.log("no sale over 1 eth"); } // prints to your console that there was no sale for you but it should not tweet
+    else { console.log("no sale over 1 eth");
+         return tweet.handleDupesAndTweet(tokename, "-1", image} // prints to your console that there was no sale for you but it should not tweet returns -1 so when you check tweettext in tweet you wont tweet
 
     return tweet.handleDupesAndTweet(tokenName, tweetText, image);
 }

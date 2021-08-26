@@ -22,14 +22,25 @@ function formatAndSendTweet(event) {
             : ` ${tokenSymbol}`
     );
 
-    const tweetText = `${tokenName} bought for ${formattedTokenPrice}${formattedPriceSymbol} ($${formattedUsdPrice}) #NFTs ${openseaLink}`;
+    const buyer = event.winner_account.user.username;
+    if (typeof(buyer) == 'undefined' || buyer == '') {
+      buyer = event.winner_account.address.substring(0,8);
+    }
+    const seller = event.seller.user.username;
+    if (typeof(seller) == 'undefined' || seller == '') {
+      seller = event.seller.address.substring(0,8);
+    }
+
+    const tweetText = `${tokenName} bought for ${formattedTokenPrice}${formattedPriceSymbol} by ${buyer} from ${seller}. ($${formattedUsdPrice}) #NFTs ${openseaLink}`;
 
     console.log(tweetText);
 
+    /*
     if ((event.total_price / 1e18) < 1) {
       console.log('Sale is only ' + event.total_price/1e18 + ' ETH, returning...')
       return;
     }
+    */
 
     let tx = event.transaction.transaction_hash;
 

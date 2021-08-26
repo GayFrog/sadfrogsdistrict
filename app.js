@@ -24,7 +24,6 @@ function formatAndSendTweet(event) {
 
     console.log(tweetText);
 
-    return tweet.handleDupesAndTweet(tokenName, tweetText, image);
 }
 
 // Poll OpenSea every minute & retrieve all sales for a given collection in the last minute

@@ -23,6 +23,9 @@ function formatAndSendTweet(event) {
     const tweetText = `${tokenName} bought for ${formattedTokenPrice}${formattedPriceSymbol} ($${formattedUsdPrice}) #NFTs ${openseaLink}`;
 
     console.log(tweetText);
+    
+    return tweet.handleDupesAndTweet(tokenName, tweetText, image);
+
 
 }
 

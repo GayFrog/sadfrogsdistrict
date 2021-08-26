@@ -11,8 +11,8 @@ function formatAndSendTweet(event) {
     const totalPrice = _.get(event, 'total_price');
     const usdValue = _.get(event, ['payment_token', 'usd_price']);
     const tokenSymbol = _.get(event, ['payment_token', 'symbol']);
-    
-    if (Number(event.payment_token.eth_price) < 1) {
+
+    if ((event.total_price / 1e18) < 1) {
       return;
     }
 

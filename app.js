@@ -25,13 +25,12 @@ function formatAndSendTweet(event) {
     console.log(tweetText);
 
     return tweet.handleDupesAndTweet(tokenName, tweetText, image);
-    
 }
 
 // Poll OpenSea every minute & retrieve all sales for a given collection in the last minute
 // Then pass those events over to the formatter before tweeting
 setInterval(() => {
-    const lastMinute = moment().startOf('minute').subtract(300, "seconds").unix();
+    const lastMinute = moment().startOf('minute').subtract(59, "seconds").unix();
 
     axios.get('https://api.opensea.io/api/v1/events', {
         params: {

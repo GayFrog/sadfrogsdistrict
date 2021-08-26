@@ -4,6 +4,8 @@ const moment = require('moment');
 const { ethers } = require('ethers');
 const tweet = require('./tweet');
 
+const alreadyTweeted = [];
+
 function formatAndSendTweet(event) {
     const tokenName = _.get(event, ['asset', 'name']);
     const image = _.get(event, ['asset', 'image_url']);
@@ -29,7 +31,16 @@ function formatAndSendTweet(event) {
       return;
     }
 
-    return tweet.handleDupesAndTweet(tokenName, tweetText, image);
+    let tx = event.transaction.transaction_hash;
+
+    if (alreadyTweeted.includes(tx)) {
+      console.log('Already tweeted!');
+      return;
+    } else {
+      alreadyTweeted.push(tx);
+    }
+
+    return tweet.tweet(tweetText, image);
 }
 
 // Poll OpenSea every minute & retrieve all sales for a given collection in the last minute

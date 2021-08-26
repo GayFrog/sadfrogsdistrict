@@ -73,3 +73,7 @@ async function handleDupesAndTweet(tokenName, tweetText, imageUrl) {
 function getBase64(url) {
     return axios.get(url, { responseType: 'arraybuffer'}).then(response => Buffer.from(response.data, 'binary').toString('base64'))
 }
+
+module.exports = {
+    handleDupesAndTweet: handleDupesAndTweet
+};

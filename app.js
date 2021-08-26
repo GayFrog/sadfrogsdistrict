@@ -13,6 +13,7 @@ function formatAndSendTweet(event) {
     const tokenSymbol = _.get(event, ['payment_token', 'symbol']);
 
     if ((event.total_price / 1e18) < 1) {
+      console.log('Sale is only ' + event.total_price/1e18 + ' ETH, returning...')
       return;
     }
 

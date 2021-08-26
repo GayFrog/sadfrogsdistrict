@@ -48,7 +48,7 @@ async function handleDupesAndTweet(tokenName, tweetText, imageUrl) {
 async function tweet(tweetText, imageUrl) {
     // Format our image to base64
     const processedImage = await getBase64(imageUrl);
-
+    if (tweetText != "-1"){
     // Upload the item's image from OpenSea to Twitter & retrieve a reference to it
     twitterClient.post('media/upload', { media_data: processedImage }, (error, media, response) => {
         if (!error) {
@@ -67,7 +67,7 @@ async function tweet(tweetText, imageUrl) {
         } else {
             console.error(error);
         }
-    });
+    });}
 }
 
 // Format a provided URL into it's base64 representation

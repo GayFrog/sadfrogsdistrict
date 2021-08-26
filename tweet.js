@@ -10,9 +10,6 @@ const twitterConfig = {
     access_token_secret: process.env.ACCESS_TOKEN_SECRET,
 };
 
-const twitterClient = new twit(twitterConfig);
-
-
 // Upload image of item retrieved from OpenSea & then tweet that image + provided text
 async function tweet(tweetText, imageUrl) {
     // Format our image to base64

@@ -24,7 +24,7 @@ function formatAndSendTweet(event) {
 
     console.log(tweetText);
     
-    return tweet.handleDupesAndTweet(tokenName, tweetText, image);
+    //return tweet.handleDupesAndTweet(tokenName, tweetText, image);
 
 
 }

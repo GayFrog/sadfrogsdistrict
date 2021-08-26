@@ -12,12 +12,7 @@ function formatAndSendTweet(event) {
     const usdValue = _.get(event, ['payment_token', 'usd_price']);
     const tokenSymbol = _.get(event, ['payment_token', 'symbol']);
 
-    if ((event.total_price / 1e18) < 1) {
-      console.log('Sale is only ' + event.total_price/1e18 + ' ETH, returning...')
-      return;
-    }
-
-    const formattedTokenPrice = ethers.utils.formatEther(totalPrice.toString());
+    const formattedTokenPrice = (totalPrice / 1e18).toFixed(2);
     const formattedUsdPrice = (formattedTokenPrice * usdValue).toFixed(2);
     const formattedPriceSymbol = (
         (tokenSymbol === 'WETH' || tokenSymbol === 'ETH') 
@@ -28,6 +23,11 @@ function formatAndSendTweet(event) {
     const tweetText = `${tokenName} bought for ${formattedTokenPrice}${formattedPriceSymbol} ($${formattedUsdPrice}) #NFTs ${openseaLink}`;
 
     console.log(tweetText);
+
+    if ((event.total_price / 1e18) < 1) {
+      console.log('Sale is only ' + event.total_price/1e18 + ' ETH, returning...')
+      return;
+    }
 
     return tweet.tweet(tweetText, image);
 }
